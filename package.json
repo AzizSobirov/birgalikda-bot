@@ -1,0 +1,17 @@
+{
+  "name": "birgalikda-bot",
+  "author": "Aziz Sobirov",
+  "license": "",
+  "scripts": {
+    "start": "node --watch -r dotenv/config scripts/start.mjs",
+    "dev": "nodemon -r dotenv/config scripts/start.mjs"
+  },
+  "dependencies": {
+    "@grammyjs/parse-mode": "^1.9.0",
+    "@grammyjs/router": "^2.0.0",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.21.1",
+    "nodemon": "^3.1.0",
+    "vercel-grammy": "^1.0.0"
+  }
+}
