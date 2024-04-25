@@ -21,10 +21,21 @@ const menu = (ctx) => {
 // * Cancel button
 const cancelBtn = new Keyboard().text("❌ Bekor qilish").resized();
 
+const cooperation = new Keyboard()
+  .text("Telefon")
+  .text("Telegram")
+  .row()
+  .text("Whatsapp")
+  .text("Elektron pochta")
+  .row()
+  .text("🏠 Bosh sahifa")
+  .resized();
+
 // * useButtons
 export default function useButtons() {
   return {
     menu,
     cancelBtn,
+    cooperation,
   };
 }

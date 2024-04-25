@@ -1,4 +1,4 @@
-import useButtons from "./useButtons.mjs";
+import useButtons from "./useButtons.js";
 
 export default function useQuery(bot) {
   // confifm passanger

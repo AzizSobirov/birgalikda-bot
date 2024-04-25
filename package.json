@@ -2,9 +2,10 @@
   "name": "birgalikda-bot",
   "author": "Aziz Sobirov",
   "license": "",
+  "type": "module",
   "scripts": {
-    "start": "node --watch -r dotenv/config scripts/start.mjs",
-    "dev": "nodemon -r dotenv/config scripts/start.mjs"
+    "start": "node -r dotenv/config src/bot.js",
+    "dev": "nodemon -r dotenv/config src/bot.js"
   },
   "dependencies": {
     "@grammyjs/parse-mode": "^1.9.0",
