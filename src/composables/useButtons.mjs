@@ -7,19 +7,24 @@ const useString = (action, data) => {
 
 // * Main Menu
 const menu = (ctx) => {
-  const menu = new Keyboard().text("menu").row().text("menu2");
-
-  // if (ctx.session.admin) {
-  //   menu.row();
-  //   menu.text(ctx.t("admin"));
-  // }
+  const menu = new Keyboard()
+    .text("👟 Yo'lovchi")
+    .row()
+    .text("🚖 Haydovchi")
+    .row()
+    .text("☎️ Hamkorlik")
+    .text("🖥 Biz haqimizda");
 
   return menu.resized();
 };
+
+// * Cancel button
+const cancelBtn = new Keyboard().text("❌ Bekor qilish").resized();
 
 // * useButtons
 export default function useButtons() {
   return {
     menu,
+    cancelBtn,
   };
 }

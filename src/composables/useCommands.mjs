@@ -20,9 +20,12 @@ export default function useCommands(bot) {
 
   // TODO: /start
   bot.command("start", async (ctx) => {
-    await ctx.reply("Assalamu alaykum", {
-      reply_markup: btn.menu(),
-    });
+    await ctx.reply(
+      "Assalamu alaykum. \nAziz foydalanuvchi bo'limingizni tanlang",
+      {
+        reply_markup: btn.menu(),
+      }
+    );
   });
 
   // TODO: /services
