@@ -11,6 +11,14 @@ export default function useMessages(bot) {
     });
   });
 
+  bot.hears("🚖 Haydovchi", async (ctx) => {
+    ctx.session.step = "driver";
+    ctx.reply("Biz bilan ishlayotganingiz uchun rahmat", {
+      reply_markup: btn.cancelBtn,
+    });
+    ctx.reply("Ism familiyangiz yozing");
+  });
+
   bot.hears("☎️ Hamkorlik", async (ctx) => {
     ctx.reply("Siz bilan hamkorlik qilishdan mamnunmiz", {
       reply_markup: btn.cooperation,

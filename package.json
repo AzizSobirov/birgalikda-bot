@@ -3,6 +3,7 @@
   "author": "Aziz Sobirov",
   "license": "",
   "type": "module",
+  "main": "src/bot.js",
   "scripts": {
     "start": "node -r dotenv/config src/bot.js",
     "dev": "nodemon -r dotenv/config src/bot.js"
