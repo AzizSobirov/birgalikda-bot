@@ -1,9 +1,12 @@
+import { Users } from "../models/user.js";
 import useButtons from "./useButtons.js";
 
 export default function useQuery(bot) {
   // confifm passanger
   bot.callbackQuery("passanger-confirm", async (ctx) => {
+    const client = await Users.create(ctx.session.user);
     await ctx.deleteMessage();
+
     await ctx.reply(
       "Buyurtmangiz olindi. Shu yo'nalishdagi haydovchini kuting. Tez orada bog'lanishadi",
       {

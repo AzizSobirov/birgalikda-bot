@@ -26,6 +26,7 @@ export default function useCommands(bot) {
         reply_markup: btn.menu(),
       }
     );
+
   });
 
   // TODO: /services

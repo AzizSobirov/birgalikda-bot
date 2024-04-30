@@ -6,6 +6,7 @@ const btn = useButtons();
 export default function useMessages(bot) {
   bot.hears("👟 Yo'lovchi", async (ctx) => {
     ctx.session.step = "passenger";
+    console.log(ctx);
     ctx.reply("Ism familiyangiz yozing", {
       reply_markup: btn.cancelBtn,
     });

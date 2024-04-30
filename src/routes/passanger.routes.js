@@ -57,17 +57,18 @@ export default function usePassanger(router) {
       .text("❌ Bekor qilish", "passanger-decline");
 
     const msg = `
-Iltimos ma'lumotlaringizni tasdiqlang \n
-Ism: ${user.name}
-Telefon raqam: ${user.phone}
-Manzil: ${user.location}
-Qayerga : ${user.where}
-Yo'lovchilar soni: ${user.passengers}
+        Iltimos ma'lumotlaringizni tasdiqlang \n
+        Ism: ${user.name}
+        Telefon raqam: ${user.phone}
+        Manzil: ${user.location}
+        Qayerga : ${user.where}
+        Yo'lovchilar soni: ${user.passengers}
   `;
 
     await ctx.reply(msg, {
       reply_markup: inlineKeyboard,
     });
+
 
     // await ctx.reply(
     //   "Buyurtmangiz olindi. Shu yo'nalishdagi haydovchini kuting. Tez orada bog'lanishadi"

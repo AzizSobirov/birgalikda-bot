@@ -9,11 +9,17 @@
     "dev": "nodemon -r dotenv/config src/bot.js"
   },
   "dependencies": {
+    "@grammyjs/files": "^1.1.0",
     "@grammyjs/parse-mode": "^1.9.0",
     "@grammyjs/router": "^2.0.0",
     "dotenv": "^16.4.5",
     "grammy": "^1.21.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.7",
     "nodemon": "^3.1.0",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3",
     "vercel-grammy": "^1.0.0"
   }
 }

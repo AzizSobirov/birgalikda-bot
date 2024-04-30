@@ -1,6 +1,7 @@
 import { InlineKeyboard, Keyboard } from "grammy";
-import useButtons from "../composables/useButtons.js";
 
+import useButtons from "../composables/useButtons.js";
+import { Drivers } from "../models/driver.js";
 export default function useDriver(router) {
   //?? /driver
   const driver = router.route("driver");
@@ -22,10 +23,16 @@ export default function useDriver(router) {
 
   //?? /guvohnoma_old
   const guvohnoma_old = router.route("guvohnoma_old");
-  guvohnoma_old.on("message:text", async (ctx) => {
+  guvohnoma_old.on("message:photo", async (ctx) => {
     ctx.session.step = "guvohnoma_orqa";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.guvohnoma_old = url;
+
     // ctx.session.user.guvohnoma_old = ctx.message.text;
-    await ctx.reply("Haydovchilik guvohnomasi foto surati old qismi)");
+    await ctx.reply("Haydovchilik guvohnomasi foto surati orqa qismi)");
   });
   guvohnoma_old.use((ctx) =>
     ctx.reply("Iltimos manzilingizni tog'ri kiriting")
@@ -33,8 +40,13 @@ export default function useDriver(router) {
 
   //?? /guvohnoma_orqa
   const guvohnoma_orqa = router.route("guvohnoma_orqa");
-  guvohnoma_orqa.on("message:text", async (ctx) => {
+  guvohnoma_orqa.on("message:photo", async (ctx) => {
     ctx.session.step = "tex_old";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.guvohnoma_orqa = url;
     // ctx.session.user.guvohnoma_orqa = ctx.message.text;
     await ctx.reply("Tex pasport foto surati old qismi)");
   });
@@ -44,8 +56,13 @@ export default function useDriver(router) {
 
   //?? /tex_old
   const tex_old = router.route("tex_old");
-  tex_old.on("message:text", async (ctx) => {
+  tex_old.on("message:photo", async (ctx) => {
     ctx.session.step = "tex_orqa";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.tex_old = url;
     // ctx.session.user.tex_old = ctx.message.text;
     await ctx.reply("Tex pasport foto surati orqa qismi)");
   });
@@ -53,8 +70,13 @@ export default function useDriver(router) {
 
   //?? /tex_orqa
   const tex_orqa = router.route("tex_orqa");
-  tex_orqa.on("message:text", async (ctx) => {
+  tex_orqa.on("message:photo", async (ctx) => {
     ctx.session.step = "passport";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.tex_orqa = url;
     // ctx.session.user.tex_orqa = ctx.message.text;
     await ctx.reply("Shaxsiy pasport yoki ID karta foto surati");
   });
@@ -62,8 +84,13 @@ export default function useDriver(router) {
 
   //?? /passport
   const passport = router.route("passport");
-  passport.on("message:text", async (ctx) => {
+  passport.on("message:photo", async (ctx) => {
     ctx.session.step = "sugurta";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.passport = url;
     // ctx.session.user.passport = ctx.message.text;
     await ctx.reply("Avtomobil transport sug'urtasi");
   });
@@ -71,8 +98,13 @@ export default function useDriver(router) {
 
   //?? /sugurta
   const sugurta = router.route("sugurta");
-  sugurta.on("message:text", async (ctx) => {
+  sugurta.on("message:photo", async (ctx) => {
     ctx.session.step = "nomida";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.sugurta = url;
     // ctx.session.user.sugurta = ctx.message.text;
     await ctx.reply("Avto transport vositasi kimning nomida", {
       reply_markup: new Keyboard()
@@ -96,19 +128,22 @@ export default function useDriver(router) {
   //?? /nomida
   const nomida = router.route("nomida");
   nomida.on("message:text", async (ctx) => {
+    ctx.session.user.nomida = ctx.message.text;
     if (ctx.message.text == "Meni") {
       ctx.session.step = "idle";
+
       ctx.reply(
         "Hurmatli haydovchi hujjatlaringiz operatorlar tomonidan ko'rib chiqilib, tez orada siz bilan bog'lanishadi.",
         {
           reply_markup: useButtons().menu(),
         }
       );
+      const driver = await Drivers.create(ctx.session.user);
       ctx.reply("Ishonchingiz uchun raxmat. Hamisha birgalikda");
     } else {
       ctx.session.step = "ishonchnoma";
       await ctx.reply(
-        "Avto transportni boshqarish uchun ishonchnoma (Davernes) foto surati",
+        "Avto transportni boshqarish uchun ishonchnoma (Doverennost) foto surati",
         {
           reply_markup: new Keyboard().text("❌ Bekor qilish").resized(),
         }
@@ -119,8 +154,13 @@ export default function useDriver(router) {
 
   //?? /ishonchnoma
   const ishonchnoma = router.route("ishonchnoma");
-  ishonchnoma.on("message:text", async (ctx) => {
+  ishonchnoma.on("message:photo", async (ctx) => {
     ctx.session.step = "idle";
+    const file = await ctx.getFile();
+    // Download the file to a temporary location.
+    const path = await file.download();
+    const url = file.getUrl();
+    ctx.session.user.ishonchnoma = url;
     ctx.reply(
       "Hurmatli haydovchi hujjatlaringiz operatorlar tomonidan ko'rib chiqilib, tez orada siz bilan bog'lanishadi.",
       {
@@ -128,6 +168,7 @@ export default function useDriver(router) {
       }
     );
     ctx.reply("Ishonchingiz uchun raxmat. Hamisha birgalikda");
+    const driver = await Drivers.create(ctx.session.user);
   });
   ishonchnoma.use((ctx) => ctx.reply("Iltimos manzilni tog'ri kiriting"));
 }
